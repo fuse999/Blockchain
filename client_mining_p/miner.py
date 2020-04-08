@@ -1,6 +1,6 @@
 import hashlib
 import requests
-
+import time
 import sys
 import json
 
@@ -63,6 +63,7 @@ if __name__ == '__main__':
 
         # TODO: Get the block from `data` and use it to look for a new proof
         # new_proof = ???
+        start = time.process_time()
         block = data["last_block"]
         new_proof = proof_of_work(block)
         # Test
@@ -80,7 +81,7 @@ if __name__ == '__main__':
             print("Response returned:")
             print(r)
             break
-        print(f"{data['message']} in {")
+        print(f"{data['message']} in {time.process_time() - start} sec")
         if data['message'] == "Success":
             bitcoin_count += 1
             print(f"Miner mined {bitcoin_count} Bitcoins")
